@@ -1,4 +1,33 @@
-#titletron {
-  background-color: #20315A;
-  color: white;
+/* ================ Body ================ */
+body, html {
+  font-family: 'Noticia Text', serif;
 }
+
+/* ===============  Title =============== */
+#titletron {
+  background-image: url("/assets/img/coverImg.jpg");
+  background-size: cover;
+  background-position: bottom;
+  height: 300px;
+  background-color: brown;
+  color: white;
+  margin-bottom: 0;
+}
+
+#title {
+  font-family: 'Rye', cursive;
+  font-size: 5.5rem;
+}
+
+/* =============== Navbar =============== */
+a.nav-link.active {
+  color: #567b95 !important;
+}
+
+a.nav-link {
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* ============== Articles ============== */

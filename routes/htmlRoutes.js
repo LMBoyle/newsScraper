@@ -10,7 +10,6 @@ var axios = require("axios");
     var testObject = {
       msg: "test"
     }
-    console.log(testObject)
     res.render("index", testObject)
   });
 
