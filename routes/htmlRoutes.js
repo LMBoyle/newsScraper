@@ -6,12 +6,19 @@ var axios = require("axios");
 
 // Routes ===================================================================
 
-  router.get("/", function(req, res) {
+  router.get("/articles", function(req, res) {
     var testObject = {
       msg: "test"
     }
     res.render("index", testObject)
   });
+
+  router.get("/saved", function (req, res) {
+    var testObject = {
+      msg: "test"
+    }
+    res.render("saved", testObject)
+  })
 
 // Export ===================================================================
 

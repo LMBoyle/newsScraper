@@ -18,27 +18,40 @@
       <div class="card">
         <div class="card-header">
           <strong>
-            <i class="fas fa-book-open"></i>
-            Articles
+            <i class="fas fa-bookmark"></i>
+            Saved Articles
           </strong>
         </div>
 
-        <div class="card-body" id="scrapedArticles">
-          {{!-- {{#each articleTitle}} --}}
-            {{!-- <div> {{articleTitle}} </div> --}}
-            <ul class="list-group list-group-flush">
+        <div class="card-body" id="savedArticles">
+          <ul class="list-group list-group-flush">
             <li class="list-group-item" class="articleTitle"> Test Item 1 
               <div class="float-right">
                 <button type="button" class="linkBtn btn">
                   <i class="fas fa-link fa-2x"></i>
                 </button>
-                <button type="button" class="saveBtn btn">
-                  <i class="fas fa-save fa-2x"></i>
+                <button type="button" class="linkBtn btn">
+                  <i class="fas fa-trash-alt fa-2x"></i>
                 </button>
+
+                <i class="fas fa-eye-slash fa-2x"></i>
               </div>
               <p><small>This line of text is meant to be treated as fine print.</small></p>
             </li>
-            <li class="list-group-item"> Test Item 2 </li>
+            <li class="list-group-item"> Test Item 2 
+              <div class="float-right">
+                <button type="button" class="linkBtn btn">
+                  <i class="fas fa-link fa-2x"></i>
+                </button>
+                <button type="button" class="linkBtn btn">
+                  <i class="fas fa-trash-alt fa-2x"></i>
+                </button>
+
+                <i class="fas fa-eye fa-2x"></i>
+              </div>
+              <p><small>This line of text is meant to be treated as fine print.</small></p>
+
+            </li>
             <li class="list-group-item"> Test Item 3 </li>
           </ul>
         </div>
