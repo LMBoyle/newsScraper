@@ -1,25 +1,25 @@
 // Dependencies =============================================================
 
 var router = require("express").Router();
-var cheerio = require("cheerio");
-var axios = require("axios");
 
 // Routes ===================================================================
-
+module.exports = function(db) {
   router.get("/articles", function(req, res) {
-    var testObject = {
-      msg: "test"
-    }
-    res.render("index", testObject)
+    db.Article.find({}, function(err, data) {
+      if (err) {
+        console.log(err);
+      }
+      var artObject = {
+        title: data.title,
+        link: data.link
+      }
+      res.render("index", artObject)
+    })
   });
 
-  router.get("/saved", function (req, res) {
-    var testObject = {
-      msg: "test"
-    }
-    res.render("saved", testObject)
-  })
-
-// Export ===================================================================
-
-module.exports = router;
+  // router.get("/saved", function (req, res) {
+    
+    // res.render("saved", testObject)
+  // })
+  return router;
+}

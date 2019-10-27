@@ -2,13 +2,17 @@
 
 var express = require("express");
 var exphbs = require("express-handlebars");
+var mongoose = require("mongoose");
+
+// Database =================================================================
+
+var db = require("./models");
+mongoose.connect("mongodb://localhost/newsScraper", { useNewUrlParser: true });
 
 // Express ==================================================================
 
 var app = express();
 var PORT = process.env.PORT || 1745;
-
-// var db = require("./models")
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -25,13 +29,14 @@ app.engine("handlebars", hbs.engine);
 
 // Routes ===================================================================
 
-app.use('/api', require('./routes/apiRoutes'));
-app.use(require("./routes/htmlRoutes.js"));
+app.use('/api', require('./routes/apiRoutes')(db));
+app.use(require("./routes/htmlRoutes.js")(db));
 
 // Listen ===================================================================
 
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
+
 });
 
 module.exports = app;
