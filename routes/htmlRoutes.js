@@ -13,6 +13,7 @@ module.exports = function(db) {
   router.get("/articles", function(req, res) {
     var currentDate = new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate());
     var currentDateString = JSON.stringify(currentDate).split("T")[0].split('"')[1]
+    var dateId;
 
     // Search database for date collection
     db.Date.find({}, function(err, data) {
@@ -37,7 +38,13 @@ module.exports = function(db) {
         console.log("db date: ", data[0].savedDate)
         console.log("current date: ", currentDateString)
         // Update date and...
-        
+        db.Date.findOneAndUpdate({
+          _id: data[0]._id
+        },{
+          savedDate: currentDateString
+        }).then(function(date) {
+          console.log("Date updated to: ", currentDateString)
+        })
         // do a new scrape
         checkArtColl();
       }
@@ -46,14 +53,13 @@ module.exports = function(db) {
         console.log("Dates match!")
         console.log("db date: ", data[0].savedDate)
         console.log("current date: ", currentDateString)
+        displayArticles()
       }
     })
 
     // Check the article collection 
     function checkArtColl() {
       db.Article.find({}, function(err, data) {
-        console.log(data)
-        console.log(data.length)
         if (err) {
           console.log(err)
         }
@@ -61,14 +67,12 @@ module.exports = function(db) {
         else if (data.length != 0) {
           mongoose.connection.db.dropCollection("articles",function(err, result) {
             console.log("Collection dropped");
-          }
-        );
-        // Scrape new articles
-        scrapeNews()
+          });
+          // Scrape new articles
+          scrapeNews()
         }
-        // If nothing is in datebase
+        // If nothing is in database
         else {
-          console.log("nothing in db")
           // Scrape new articles
           scrapeNews()
         }
@@ -100,6 +104,7 @@ module.exports = function(db) {
         });
       }).then(function() {
         console.log("Scrape Complete")
+        displayArticles()
       })
     }
       
@@ -117,6 +122,7 @@ module.exports = function(db) {
       })
     }
   });
+
   // router.get("/saved", function (req, res) {
     
     // res.render("saved", testObject)
@@ -125,5 +131,7 @@ module.exports = function(db) {
   router.get("*", function(req, res) {
     res.redirect("/articles")
   })
+
   return router;
+
 }
