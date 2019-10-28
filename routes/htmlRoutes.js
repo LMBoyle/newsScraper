@@ -110,15 +110,12 @@ module.exports = function(db) {
       
     function displayArticles() {
       db.Article.find({}, function(err, data) {
+        // console.log("in display articles")
         if (err) {
           console.log(err);
         }
-        var artObject = {
-          title: data.title,
-          link: data.link,
-          msg: "Hello"
-        }
-        res.render("index", artObject)
+        console.log(data)
+        res.render("index", {data: data})
       })
     }
   });
