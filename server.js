@@ -36,7 +36,6 @@ app.use(require("./routes/htmlRoutes.js")(db));
 
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
-
 });
 
 module.exports = app;
