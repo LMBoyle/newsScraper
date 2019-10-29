@@ -10,10 +10,15 @@ var connection = mongoose.connection;
 
 // Routes ===================================================================
 module.exports = function(db) {
-  router.get("/articles", function(req, res) {
+  router.get("/news/:tab", function(req, res) {
+    
+    console.log("Original URL ", req.originalUrl)
+    console.log("Route ", req.route.path)
+    
     var currentDate = new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate());
     var currentDateString = JSON.stringify(currentDate).split("T")[0].split('"')[1]
     var dateId;
+    var route = true;
 
     // Search database for date collection
     db.Date.find({}, function(err, data) {
@@ -110,23 +115,35 @@ module.exports = function(db) {
       
     function displayArticles() {
       db.Article.find({}, function(err, data) {
-        // console.log("in display articles")
+        console.log("in display articles")
+        console.log(req.params)
         if (err) {
           console.log(err);
         }
-        console.log(data)
-        res.render("index", {data: data})
+        console.log()
+        res.render("index", {
+          data: data,
+          route: route
+        })
       })
     }
   });
 
-  // router.get("/saved", function (req, res) {
-    
-    // res.render("saved", testObject)
-  // })
+  router.get("/saved", function (req, res) {
+    db.Article.find({}, function(err, data) {
+      // console.log("in display articles")
+      if (err) {
+        console.log(err);
+      }
+      res.render("saved", {
+        data: data,
+        route: true
+      })
+    })
+  })
 
   router.get("*", function(req, res) {
-    res.redirect("/articles")
+    res.redirect("/news/articles")
   })
 
   return router;

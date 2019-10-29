@@ -40,3 +40,7 @@ a.nav-link {
 .saveBtn {
   color: green;
 }
+
+li {
+  line-height: 48px;
+}

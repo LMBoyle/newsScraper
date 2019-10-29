@@ -1,12 +1,17 @@
 {{!-- Title --}}
-<div>
-  {{> header/jumbo}}
-</div>
+<nav>
+  <div>
+    {{> header/jumbo}}
+  </div>
+</nav>
 
 {{!-- Navbar --}}
-<div>
-  {{> header/navbar}}
-</div>
+<nav>
+  <div class="nav nav-tabs nav-fill" id="navTabs" role="tabList">
+    <a class="nav-item nav-link active" href="#articles" data-toggle="tab" aria-controls="articles" aria-selected="true" id="articleTab"> Articles </a>
+    <a class="nav-item nav-link" href="#saved" data-toggle="tab" aria-controls="saved" aria-selected="false" id="savedTab"> Saved Articles </a>
+  </div>
+</nav>
 
 {{!-- Main --}}
 <div class="container">
@@ -23,20 +28,26 @@
         </div>
 
         <div class="card-body" id="scrapedArticles">
-          <ul class="list-group list-group-flush">
-            {{#each data}}
-            <li class="list-group-item" class="articleTitle"> {{title}}
-              <div class="float-right">
-                <button type="button" class="linkBtn btn" href="{{link}}">
-                  <i class="fas fa-link fa-2x"></i>
-                </button>
-                <button type="button" class="saveBtn btn">
-                  <i class="fas fa-save fa-2x"></i>
-                </button>
-              </div>
-            </li>
-            {{/each}}
-          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="articles" role="tabpanel" aria-labelledby="articles-tab">
+              <ul class="list-group list-group-flush">
+                {{#each data}}
+                <li class="list-group-item" class="articleTitle"> {{title}}
+                  <div class="float-right">
+                    <button type="button" class="linkBtn btn" href="{{link}}">
+                      <i class="fas fa-link fa-2x"></i>
+                    </button>
+                    <button type="button" class="saveBtn btn">
+                      <i class="fas fa-save fa-2x"></i>
+                    </button>
+                  </div>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-tab">
+            </div>
+          </div>
         </div>
       </div>
     </div>
