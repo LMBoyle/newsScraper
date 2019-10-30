@@ -1,97 +1,35 @@
 {{!-- Title --}}
-<nav>
-  <div>
-    {{> header/jumbo}}
-  </div>
-</nav>
+<header class="jumbotron jumbotron-fluid" id="titletron">
+  <h1 class="text-center" id="title">
+    <strong>
+      <i class="fa fa-newspaper-o"></i> 
+      New York Times Articles 
+    </strong>
+  </h1>
+</header>
 
 {{!-- Navbar --}}
-<nav>
-  <div class="nav nav-tabs nav-fill" id="navTabs" role="tabList">
-    <a class="nav-item nav-link active" href="#articles" data-toggle="tab" aria-controls="articles" aria-selected="true" id="articleTab"> Articles </a>
-    <a class="nav-item nav-link" href="#saved" data-toggle="tab" aria-controls="saved" aria-selected="false" id="savedTab"> Saved Articles </a>
-  </div>
+<nav class="nav nav-tabs nav-fill" id="navTabs" role="tabList">
+  <a class="nav-item nav-link active" href="#articles" data-toggle="tab" aria-controls="articles" aria-selected="true" id="articleTab"> Articles </a>
+  <a class="nav-item nav-link" href="#saved" data-toggle="tab" aria-controls="saved" aria-selected="false" id="savedTab"> Saved Articles </a>
 </nav>
 
 {{!-- Main --}}
 <div class="container">
   <div class="tab-content" id="myTabContent">
     {{!-- Articles --}}
-    <div class="tab-pane fade show active" id="articles" role="tabpanel" aria-labelledby="articles-tab">
-      {{!-- Card --}}
-      <div class="row">
-        <div class="col-sm-12">
-          <br>
-          <div class="card">
-            <div class="card-header">
-              <strong>
-                <i class="fas fa-book-open"></i>
-                Articles
-              </strong>
-            </div>
-
-            {{!-- Card for scraped articles --}}
-            <div class="card-body" id="scrapedArticles">
-              <ul class="list-group list-group-flush">
-                {{#each articles}}
-                  <li class="list-group-item" class="articleTitle"> {{title}}
-                    <div class="float-right">
-                      <button type="button" class="linkBtn btn" href="{{link}}">
-                        <i class="fas fa-link fa-2x"></i>
-                      </button>
-                      <button type="button" class="saveBtn btn">
-                        <i class="fas fa-save fa-2x"></i>
-                      </button>
-                    </div>
-                  </li>
-                {{/each}}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <section class="tab-pane fade show active" id="articles" role="tabpanel" aria-labelledby="articles-tab">
+      {{> sections/articles}}
+    </section>
 
     {{!-- Saved --}}
-    <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-tab">
-      {{!-- Card --}}
-      <div class="row">
-        <div class="col-sm-12">
-          <br>
-          <div class="card">
-            <div class="card-header">
-              <strong>
-                <i class="fas fa-book-open"></i>
-                Saved
-              </strong>
-            </div>
-
-            {{!-- Card for saved articles --}}
-            <div class="card-body" id="savedArticles">
-              <ul class="list-group list-group-flush">
-                {{!-- {{#each saved}} --}}
-                <li class="list-group-item" class="articleTitle"> Test saved
-                  <div class="float-right">
-                    <button type="button" class="linkBtn btn" href="#">
-                      <i class="fas fa-link fa-2x"></i>
-                    </button>
-                    <button type="button" class="saveBtn btn">
-                      <i class="fas fa-save fa-2x"></i>
-                    </button>
-                  </div>
-                </li>
-                {{!-- {{/each}} --}}
-              </ul>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
+    <section class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-tab">
+      {{> sections/saved}}
+    </section>
   </div>
-
+2
   <!-- Footer Region -->
-  <div class="row">
+  <footer class="row">
     <div class="col-sm-12">
 
       <hr>
@@ -102,5 +40,5 @@
       </h5>
 
     </div>
-  </div>
+  </footer>
 </div>

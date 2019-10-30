@@ -1,150 +1,185 @@
 // Dependencies =============================================================
 
-var router = require("express").Router();
-var cheerio = require("cheerio");
-var axios = require("axios");
-var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/newsScraper", { useNewUrlParser: true });
-var connection = mongoose.connection;
+const 
+  router = require("express").Router(),
+  cheerio = require("cheerio"),
+  axios = require("axios"),
+  mongoose = require("mongoose"),
+  connection = mongoose.connection;
 
+mongoose.connect("mongodb://localhost/newsScraper", { useNewUrlParser: true });
+
+// Vars =====================================================================
+
+const 
+  currentDate = new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate()),
+  currentDateString = JSON.stringify(currentDate).split("T")[0].split('"')[1];
+
+let
+  todayScraped = false,
+  articleData,
+  savedData;
 
 // Routes ===================================================================
-module.exports = function(db) {
-  router.get("/news/:tab", function(req, res) {
-    
-    console.log("Original URL ", req.originalUrl)
-    console.log("Route ", req.route.path)
-    
-    var currentDate = new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate());
-    var currentDateString = JSON.stringify(currentDate).split("T")[0].split('"')[1]
-
+module.exports = db => {
+  // Scrape the articles and show a loading page
+  router.get("/news/loading", (req, res) => {
     // Search database for date collection
-    db.Date.find({}, function(err, data) {
+    db.Date.find({}, (err, data) => {
+      console.log("\n================================================================================");
+      console.log("Finding date");
+
+      // If error
       if (err) {
-        console.log(err)
+        console.log(err);
       }
-      // If nothing in collection
+      // If no date in collection
       else if (data.length === 0) {
+        todayScraped = false
         // Create a saved date
-        db.Date.create({savedDate:currentDateString})
-          .then(function(dbDate) {
-            console.log("Date created: ", dbDate)
-          })
-          .catch(function(err) {
-            console.log(err);
-          });
-        checkArtColl();
+        db.Date.create({
+          savedDate:currentDateString
+        })
+        .then(dbDate => console.log("Date created: ", dbDate))
+        .catch(err => console.log(err));
       }
       // If todays date doesn't match db saved date
-      else if (currentDateString != data[0].savedDate){
+      else if (currentDateString != data[0].savedDate) {
         console.log("Dates don't match!")
         console.log("db date: ", data[0].savedDate)
         console.log("current date: ", currentDateString)
-        // Update date and...
+        todayScraped = false;
+        // Update date
         db.Date.findOneAndUpdate({
           _id: data[0]._id
         },{
           savedDate: currentDateString
-        }).then(function(date) {
-          console.log("Date updated to: ", currentDateString)
         })
-        // do a new scrape
-        checkArtColl();
+        .then(() => console.log("Date updated to: ", currentDateString))
       }
       // If todays date matches db saved date
-      else if (currentDateString === data[0].savedDate){
+      else if (currentDateString === data[0].savedDate) {
         console.log("Dates match!")
         console.log("db date: ", data[0].savedDate)
         console.log("current date: ", currentDateString)
-        displayArticles()
+        todayScraped = true;
       }
+      // Go and check article collection
     })
+    .then(() => checkArtColl())
 
     // Check the article collection 
-    function checkArtColl() {
-      db.Article.find({}, function(err, data) {
+    checkArtColl = () => {
+      console.log("Checking article collection")
+
+      db.Article.find({}, (err, data) => {
+        console.log("data length: ", data.length);
+        console.log("today scraped: ", todayScraped);
+
+        // If error
         if (err) {
-          console.log(err)
+          console.log(err);
         }
-        // If something is in database
-        else if (data.length != 0) {
-          mongoose.connection.db.dropCollection("articles",function(err, result) {
-            console.log("Collection dropped");
-          });
-          // Scrape new articles
-          scrapeNews()
+        else if (data.length === 0) {
+          scrapeNews();
         }
-        // If nothing is in database
+        // If something is in database and today's news isn't scraped
+        else if (data.length != 0 && !todayScraped) {
+          connection.db.dropCollection("articles", () => console.log("Collection dropped"));
+          scrapeNews();
+        }
         else {
-          // Scrape new articles
-          scrapeNews()
+          showLoading();
         }
-      })
-    }
+      });
+    };
 
     // Scrape the news
-    function scrapeNews() {
-      // Send get request to nytimes
-      axios.get("https://www.nytimes.com").then(function(response) {
+    scrapeNews = () => {
+      console.log("Scraping News")
+
+      // Send get request to NY Times
+      axios.get("https://www.nytimes.com")
+      .then(response => {
         // Use Cheerio to load the response
         var $ = cheerio.load(response.data);
+        var div = $("div.esl82me1")
+        var result = {}
 
         // For each element 
-        $("div.esl82me1").each(function(i, element) {
-          var result = {}
+        div.each((i, element) => {
           // Find the link
-          result.link = $(element).parent().parent().parent().find("a").attr("href")
+          result.link = "https://www.nytimes.com" + $(element).parent().parent().parent().find("a").attr("href")
           // Find the title
           result.title = $(element).find("span").attr("class", "esl82me0").text() || $(element).find("h2").attr("class", "esl82me0").text();
 
           // For each article, put it in the database
-          db.Article.create(result)
-            .then(function(dbArticle) {
-              // console.log(dbArticle);
-            })
-            .catch(function(err) {
-              console.log(err);
-            });
+          db.Article.create(
+            result
+          )
+          .then(dbArticle => console.log("Created articles: ", dbArticle))
+          .catch(err => console.log(err));
         });
-      }).then(function() {
         console.log("Scrape Complete")
-        displayArticles()
+        showLoading()
       })
+      .catch(err => console.error(err))
     }
 
-    // Send news data to handlebars to display
-    function displayArticles() {
-      db.Article.find({}, function(err, data) {
-        console.log("in display articles")
-        console.log(req.params)
-        if (err) {
-          console.log(err);
-        }
-        console.log()
-        res.render("index", {
-          articles: data,
-        })
+    showLoading = () => {
+      console.log("rendering loading");
+      console.log("================================================================================\n");
+      res.render("loading", {
+        msg: "Fetching News"
       })
     }
-  });
+  })
 
-  router.get("/saved", function (req, res) {
-    db.Article.find({}, function(err, data) {
-      // console.log("in display articles")
+  // Find and send news data to handlebars to display
+  router.get("/news", (req, res) => {
+    console.log("\n================================================================================");
+    console.log("Finding data to show");
+
+    // Find articles
+    db.Article.find({}, (err, data) => {
+      console.log("finding articles")
+      // If error
       if (err) {
         console.log(err);
       }
-      res.render("saved", {
-        data: data,
-        route: true
+      // Else set article data
+      // console.log("articles data: ", data)
+      articleData = data
+    })
+    // Find saved
+    db.Saved.find({}, (err, data) => {
+      console.log("finding saved")
+      // If error
+      if (err) {
+        console.log(err);
+      }
+      // Else set saved data
+      // console.log("saved data: ", data)
+      savedData = data
+    })
+    // Render page
+    .then(() => {
+      console.log("rendering");
+      console.log("================================================================================\n");
+
+      res.render("index", {
+        articles: articleData,
+        saved: savedData
       })
     })
+  
+
+    displayArticles = () => {
+        
+    };
   })
 
-  router.get("*", function(req, res) {
-    res.redirect("/news/articles")
-  })
+  router.get("*", (req, res) => res.redirect("/news/loading"))
 
   return router;
-
 }

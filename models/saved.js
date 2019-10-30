@@ -11,9 +11,9 @@ var SavedSchema = new Schema({
     type: String,
     required: true
   },
-  isSaved: {
+  isRead: {
     type: Boolean,
-    default: true
+    default: false
   },
   note: {
     type: Schema.Types.ObjectId,

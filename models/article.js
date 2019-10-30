@@ -10,11 +10,7 @@ var ArticleSchema = new Schema({
   link: {
     type: String,
     required: true
-  },
-  isSaved: {
-    type: Boolean,
-    default: false
-  },
+  }
 });
 
 var ArticleModel = mongoose.model("Article", ArticleSchema);

@@ -1,9 +1,11 @@
 /* ================ Body ================ */
+
 body, html {
   font-family: 'Noticia Text', serif;
 }
 
 /* ===============  Title =============== */
+
 #titletron {
   background-image: url("/assets/img/coverImg.jpg");
   background-size: cover;
@@ -22,6 +24,7 @@ body, html {
 }
 
 /* =============== Navbar =============== */
+
 a.nav-link.active {
   color: #567b95 !important;
 }
@@ -33,6 +36,7 @@ a.nav-link {
 }
 
 /* ============== Articles ============== */
+
 .linkBtn {
   color: #567b95;
 }
@@ -43,4 +47,40 @@ a.nav-link {
 
 li {
   line-height: 48px;
+}
+
+/* ============ Loading Card ============ */
+
+.loadingCard {
+  background-color: rgb(34, 34, 34)
+}
+
+#pawHeader {
+  background-color: black;
+  color: white;
+}
+
+/* ========= Loading Card Paws  ========= */
+@keyframes loading {
+  0%   {color: rgba(0, 0, 0, 0);}
+  25%  {color: rgba(255, 255, 255, 0.333);}
+  50%  {color: rgba(255, 255, 255, 0.666);}
+  100% {color: rgb(255, 255, 255);}
+}
+
+.fa-paw {
+  animation-name: loading;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  animation-fill-mode: backwards;
+}
+
+#pawTwo {
+  animation-delay: .5s;
+}
+
+#pawThree{
+  animation-delay: .75s;
 }
