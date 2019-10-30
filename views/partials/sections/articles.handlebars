@@ -12,10 +12,11 @@
 
       {{!-- Card for scraped articles --}}
       <div class="card-body" id="scrapedArticles">
-        {{#unless saved}}
-          <li class="list-group-item" class="nothingScraped">
+        {{#unless articles}}
+          <li class="list-group-item nothingScraped text-center">
             Oops! You seem to have missed a step!
-            <button type="button" class="scrapeBtn btn">
+            <br/>
+            <button type="button" class="scrapeBtn btn btn-info" onclick="scrapeNewsBtn()">
               Get Some News!
             </button>
           </li>
@@ -23,7 +24,7 @@
 
         <ul class="list-group list-group-flush">
           {{#each articles}}
-            <li class="list-group-item" class="articleTitle"> {{title}}
+            <li class="list-group-item articleTitle"> {{title}}
               <div class="float-right">
                 <button type="button" class="linkBtn btn" href="{{link}}">
                   <i class="fas fa-link fa-2x"></i>

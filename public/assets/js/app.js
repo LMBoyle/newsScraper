@@ -5,20 +5,24 @@ const
   newsURL = "/news",
   loadURL = "/news/loading";
 
-var
+let
   timeout;
 
 // Functions ================================================================
 
 loadNews = () => {
+  // If on the loading pAGE
   if (window.location.pathname === "/news/loading") {
     console.log("Reloading")
 
+    // Wait then...
     timeout = setTimeout(() => {
       console.log("Boo!");
+      // Reload the news page
       window.location = baseURL + newsURL
-    }, 6000);
+    }, 10600);
   }
+  // If not the loading page
   else {
     clearTimeout(timeout)
     console.log("Not going to reload")
@@ -26,7 +30,7 @@ loadNews = () => {
 }
 
 scrapeNewsBtn = () => {
-  // window.location = baseURL + loadURL
+  window.location = baseURL + loadURL
 }
 
 // Call =====================================================================
@@ -34,5 +38,5 @@ scrapeNewsBtn = () => {
 $("document").ready(() => {
   loadNews()
   
-  $(".scrapeBtn").on("click", scrapeNewsBtn())
+  // $(".scrapeBtn").on("click", scrapeNewsBtn())
 })

@@ -14,38 +14,38 @@
       <div class="card-body" id="savedArticles">
         <ul class="list-group list-group-flush">
           {{#unless saved}}
-          <li class="list-group-item" class="nothingSaved">
-            You haven't saved any articles
-          </li>
+            <li class="list-group-item nothingSaved">
+              You haven't saved any articles
+            </li>
           {{/unless}}
 
           {{#each saved}}
-          <li class="list-group-item" class="articleTitle"> {{title}}
-            {{!-- Buttons --}}
-            <div class="float-right">
-              {{!-- Link Button --}}
-              <button type="button" class="linkBtn btn" href="{{link}}">
-                <i class="fas fa-link fa-2x"></i>
-              </button>
-              {{!-- Trash/Unsave Button --}}
-              <button type="button" class="trashBtn btn">
-                <i class="fas fa-alt-trash fa-2x"></i>
-              </button>
-              {{!-- Note Button --}}
-              <button type="button" class="noteBtn btn">
-                <i class="fas fa-sticky-note fa-2x"></i>
-              </button>
-              {{!-- If Read --}}
-              <button type="button" class="seenBtn btn">
-                {{#if seen}}
-                <i class="fas fa-eye fa-2x"></i>
-                {{/if}}
-                {{#unless seen}}
-                <i class="fas fa-eye-slash fa-2x"></i>
-                {{/unless}}
-              </button>
-            </div>
-          </li>
+            <li class="list-group-item articleTitle"> {{title}}
+              {{!-- Buttons --}}
+              <div class="float-right">
+                {{!-- Link Button --}}
+                <button type="button" class="linkBtn btn" href="{{link}}">
+                  <i class="fas fa-link fa-2x"></i>
+                </button>
+                {{!-- Trash/Un-save Button --}}
+                <button type="button" class="trashBtn btn">
+                  <i class="fas fa-alt-trash fa-2x"></i>
+                </button>
+                {{!-- Note Button --}}
+                <button type="button" class="noteBtn btn">
+                  <i class="fas fa-sticky-note fa-2x"></i>
+                </button>
+                {{!-- If Read --}}
+                <button type="button" class="seenBtn btn">
+                  {{#if seen}}
+                  <i class="fas fa-eye fa-2x"></i>
+                  {{/if}}
+                  {{#unless seen}}
+                  <i class="fas fa-eye-slash fa-2x"></i>
+                  {{/unless}}
+                </button>
+              </div>
+            </li>
           {{/each}}
         </ul>
       </div>
