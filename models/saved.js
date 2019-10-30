@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-var ArticleSchema = new Schema({
+var SavedSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -13,10 +13,14 @@ var ArticleSchema = new Schema({
   },
   isSaved: {
     type: Boolean,
-    default: false
+    default: true
   },
+  note: {
+    type: Schema.Types.ObjectId,
+    ref: "Note"
+  }
 });
 
-var ArticleModel = mongoose.model("Article", ArticleSchema);
+var SavedModel = mongoose.model("Saved", SavedSchema);
 
-module.exports = ArticleModel;
+module.exports = SavedModel;

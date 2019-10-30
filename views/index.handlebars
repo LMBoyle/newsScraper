@@ -15,26 +15,64 @@
 
 {{!-- Main --}}
 <div class="container">
-  {{!-- Card --}}
-  <div class="row">
-    <div class="col-sm-12">
-      <br>
-      <div class="card">
-        <div class="card-header">
-          <strong>
-            <i class="fas fa-book-open"></i>
-            Articles {{msg}}
-          </strong>
-        </div>
+  <div class="tab-content" id="myTabContent">
+    {{!-- Articles --}}
+    <div class="tab-pane fade show active" id="articles" role="tabpanel" aria-labelledby="articles-tab">
+      {{!-- Card --}}
+      <div class="row">
+        <div class="col-sm-12">
+          <br>
+          <div class="card">
+            <div class="card-header">
+              <strong>
+                <i class="fas fa-book-open"></i>
+                Articles
+              </strong>
+            </div>
 
-        <div class="card-body" id="scrapedArticles">
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="articles" role="tabpanel" aria-labelledby="articles-tab">
+            {{!-- Card for scraped articles --}}
+            <div class="card-body" id="scrapedArticles">
               <ul class="list-group list-group-flush">
-                {{#each data}}
-                <li class="list-group-item" class="articleTitle"> {{title}}
+                {{#each articles}}
+                  <li class="list-group-item" class="articleTitle"> {{title}}
+                    <div class="float-right">
+                      <button type="button" class="linkBtn btn" href="{{link}}">
+                        <i class="fas fa-link fa-2x"></i>
+                      </button>
+                      <button type="button" class="saveBtn btn">
+                        <i class="fas fa-save fa-2x"></i>
+                      </button>
+                    </div>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Saved --}}
+    <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-tab">
+      {{!-- Card --}}
+      <div class="row">
+        <div class="col-sm-12">
+          <br>
+          <div class="card">
+            <div class="card-header">
+              <strong>
+                <i class="fas fa-book-open"></i>
+                Saved
+              </strong>
+            </div>
+
+            {{!-- Card for saved articles --}}
+            <div class="card-body" id="savedArticles">
+              <ul class="list-group list-group-flush">
+                {{!-- {{#each saved}} --}}
+                <li class="list-group-item" class="articleTitle"> Test saved
                   <div class="float-right">
-                    <button type="button" class="linkBtn btn" href="{{link}}">
+                    <button type="button" class="linkBtn btn" href="#">
                       <i class="fas fa-link fa-2x"></i>
                     </button>
                     <button type="button" class="saveBtn btn">
@@ -42,11 +80,10 @@
                     </button>
                   </div>
                 </li>
-                {{/each}}
+                {{!-- {{/each}} --}}
               </ul>
             </div>
-            <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-tab">
-            </div>
+
           </div>
         </div>
       </div>
