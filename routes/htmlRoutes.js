@@ -172,11 +172,6 @@ module.exports = db => {
         saved: savedData
       })
     })
-  
-
-    displayArticles = () => {
-        
-    };
   })
 
   router.get("*", (req, res) => res.redirect("/news/loading"))
