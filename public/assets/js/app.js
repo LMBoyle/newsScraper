@@ -6,12 +6,15 @@ const
   loadURL = "/news/loading";
 
 let
-  timeout;
+  timeout,
+  saveTitle,
+  saveLink;
 
 // Functions ================================================================
 
+// Loading page
 loadNews = () => {
-  // If on the loading pAGE
+  // If on the loading page
   if (window.location.pathname === "/news/loading") {
     console.log("Reloading")
 
@@ -29,14 +32,38 @@ loadNews = () => {
   }
 }
 
+// Force scrape news
 scrapeNewsBtn = () => {
   window.location = baseURL + loadURL
+}
+
+// Save an article
+saveArticle = function() {
+  saveTitle = $(this).attr("data-title")
+  saveLink = $(this).attr("data-link")
+
+  $.ajax({
+    method: "POST",
+    url: "/api/articles/saved",
+    data: {
+      title: saveTitle,
+      link: saveLink
+    }
+  })
+  .then(data => console.log(data))
+}
+
+// Save a note
+postNewNote = () => {
+
 }
 
 // Call =====================================================================
 
 $("document").ready(() => {
-  loadNews()
-  
-  // $(".scrapeBtn").on("click", scrapeNewsBtn())
+  // When page loads, run the loadNews function
+  loadNews();
+  // When save button is clicked
+  $(".saveBtn").on("click", saveArticle)
+  // When note button is clicked
 })

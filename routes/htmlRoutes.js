@@ -133,7 +133,7 @@ module.exports = db => {
         msg: "Fetching News"
       })
     }
-  })
+  });
 
   // Find and send news data to handlebars to display
   router.get("/news", (req, res) => {
@@ -172,7 +172,7 @@ module.exports = db => {
         saved: savedData
       })
     })
-  })
+  });
 
   router.get("*", (req, res) => res.redirect("/news/loading"))
 

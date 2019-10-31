@@ -45,8 +45,36 @@ a.nav-link {
   color: green;
 }
 
+.btn {
+  background-color: transparent;
+  border-radius: 50%;
+}
+
+.btn:hover{
+  color: white;
+  background-color: #567b95;
+}
+
 li {
   line-height: 48px;
+}
+
+a {
+  background-color: transparent;
+}
+
+/* =============== Saved  =============== */
+
+.trashBtn {
+  color: black
+}
+
+.noteBtn {
+  color: yellow;
+}
+
+.seenBtn {
+  color: blue;
 }
 
 /* ============ Loading Card ============ */

@@ -19,20 +19,20 @@
             </li>
           {{/unless}}
 
-          {{#each saved}}
+          {{!-- {{#each saved}} --}}
             <li class="list-group-item articleTitle"> {{title}}
               {{!-- Buttons --}}
               <div class="float-right">
                 {{!-- Link Button --}}
-                <button type="button" class="linkBtn btn" href="{{link}}">
+                <a class="linkBtn btn" href="{{link}}" target="_blank">
                   <i class="fas fa-link fa-2x"></i>
-                </button>
+                </a>
                 {{!-- Trash/Un-save Button --}}
                 <button type="button" class="trashBtn btn">
-                  <i class="fas fa-alt-trash fa-2x"></i>
+                  <i class="fas fa-trash-alt fa-2x"></i>
                 </button>
                 {{!-- Note Button --}}
-                <button type="button" class="noteBtn btn">
+                <button type="button" class="noteBtn btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                   <i class="fas fa-sticky-note fa-2x"></i>
                 </button>
                 {{!-- If Read --}}
@@ -46,8 +46,14 @@
                 </button>
               </div>
             </li>
-          {{/each}}
+          {{!-- {{/each}} --}}
         </ul>
+
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+          </div>
+        </div>
       </div>
 
     </div>
