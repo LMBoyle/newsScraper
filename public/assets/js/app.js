@@ -60,8 +60,15 @@ postNewNote = () => {
 }
 
 // Delete a saved article
-deleteSaved = () => {
+deleteSaved = function() {
+  thisId = $(this).attr("data-id")
+  console.log(thisId)
 
+  $.ajax({
+    method: "POST",
+    url: "/api/articles/saved/delete/" + thisId,
+  })
+  .then(data => console.log("deleted: ", data))
 }
 
 // Change eye icon

@@ -19,6 +19,8 @@ module.exports = function(db) {
   router.get("/articles/saved/:id", appController.getSavedId)
   // Update specific saved article
   router.post("/articles/saved/:id", appController.updateSaved)
+  // Delete specific saved article
+  router.post("/articles/saved/delete/:id", appController.deleteSaved)
   // Add to specific saved article
   router.post("/articles/saved/note/:id", appController.postNote)
 

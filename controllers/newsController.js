@@ -45,6 +45,13 @@ module.exports = db => {
       .then(dbSaved => res.json(dbSaved))
       .catch(err => res.json(err));
     },
+    deleteSaved: (req, res) => {
+      db.Saved.findOneAndDelete({
+        _id: req.params.id 
+      })
+      .then(dbSaved => res.json(dbSaved))
+      .catch(err => res.json(err));
+    },
     postNote: (req, res) => {
       db.Note.create(req.body)
       .then(dbNote => {
