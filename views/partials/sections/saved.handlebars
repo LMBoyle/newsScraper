@@ -19,12 +19,12 @@
             </li>
           {{/unless}}
 
-          {{!-- {{#each saved}} --}}
+          {{#each saved}}
             <li class="list-group-item articleTitle"> {{title}}
               {{!-- Buttons --}}
               <div class="float-right">
                 {{!-- Link Button --}}
-                <a class="linkBtn btn" href="{{link}}" target="_blank">
+                <a class="savedLinkBtn btn" href="{{link}}" target="_blank" data-id="{{_id}}">
                   <i class="fas fa-link fa-2x"></i>
                 </a>
                 {{!-- Trash/Un-save Button --}}
@@ -37,16 +37,16 @@
                 </button>
                 {{!-- If Read --}}
                 <button type="button" class="seenBtn btn">
-                  {{#if seen}}
-                  <i class="fas fa-eye fa-2x"></i>
+                  {{#if isRead}}
+                    <i class="fas fa-eye fa-2x"></i>
                   {{/if}}
-                  {{#unless seen}}
-                  <i class="fas fa-eye-slash fa-2x"></i>
+                  {{#unless isRead}}
+                    <i class="fas fa-eye-slash fa-2x"></i>
                   {{/unless}}
                 </button>
               </div>
             </li>
-          {{!-- {{/each}} --}}
+          {{/each}}
         </ul>
 
         <div class="collapse" id="collapseExample">

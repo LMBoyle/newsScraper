@@ -37,7 +37,8 @@ a.nav-link {
 
 /* ============== Articles ============== */
 
-.linkBtn {
+.linkBtn,
+.savedLinkBtn {
   color: #567b95;
 }
 

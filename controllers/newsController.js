@@ -11,7 +11,6 @@ module.exports = db => {
       db.Article.findOne({
         _id: req.params.id 
       })
-      .populate("note")
       .then(dbArticle => res.json(dbArticle))
       .catch(err => res.json(err));
     },
@@ -27,6 +26,25 @@ module.exports = db => {
       .then(dbSaved => console.log("Saved articles: ", dbSaved))
       .catch(err => console.log(err));
     },
+    getSavedId: (req, res) => {
+      db.Saved.findOne({
+        _id: req.params.id 
+      })
+      .populate("note")
+      .then(dbSaved => res.json(dbSaved))
+      .catch(err => res.json(err));
+    },
+    updateSaved: (req, res) => {
+      db.Saved.findOneAndUpdate({
+        _id: req.params.id 
+      }, { 
+        isRead: true
+      }, { 
+        new: true 
+      })
+      .then(dbSaved => res.json(dbSaved))
+      .catch(err => res.json(err));
+    },
     postNote: (req, res) => {
       db.Note.create(req.body)
       .then(dbNote => {
@@ -41,6 +59,5 @@ module.exports = db => {
       .then(dbSaved => res.json(dbSaved))
       .catch(err => res.json(err));
     },
-
   }
 }

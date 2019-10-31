@@ -8,7 +8,8 @@ const
 let
   timeout,
   saveTitle,
-  saveLink;
+  saveLink,
+  thisId;
 
 // Functions ================================================================
 
@@ -58,6 +59,27 @@ postNewNote = () => {
 
 }
 
+// Delete a saved article
+deleteSaved = () => {
+
+}
+
+// Change eye icon
+changeSeen = function() {
+  thisId = $(this).attr("data-id")
+  console.log(thisId)
+
+  $.ajax({
+    method: "POST",
+    url: "/api/articles/saved/" + thisId,
+    data: {
+      isRead: true
+    }
+  })
+  .then(data => console.log(data))
+}
+
+
 // Call =====================================================================
 
 $("document").ready(() => {
@@ -66,4 +88,9 @@ $("document").ready(() => {
   // When save button is clicked
   $(".saveBtn").on("click", saveArticle)
   // When note button is clicked
+  $(".noteBtn").on("click", postNewNote)
+  // When trash button is clicked
+  $(".trashBtn").on("click", deleteSaved)
+  // When link button is clicked
+  $(".savedLinkBtn").on("click", changeSeen)
 })
