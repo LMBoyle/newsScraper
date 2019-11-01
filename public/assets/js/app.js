@@ -9,7 +9,9 @@ let
   timeout,
   saveTitle,
   saveLink,
-  thisId;
+  thisId,
+  selectedTab,
+  savedTab;
 
 // Functions ================================================================
 
@@ -86,6 +88,30 @@ changeSeen = function() {
   .then(data => console.log(data))
 }
 
+// Get Tab
+getTab = function() {
+  selectedTab = $(this)[0].text.trim()
+  sessionStorage.clear();
+  sessionStorage.setItem("tab", selectedTab)
+}
+
+// Set tab on reload
+setTab = () => {
+  savedTab = sessionStorage.getItem("tab")
+  console.log("saved tab: ", savedTab)
+  if ($("#articleTab").hasClass("active") && savedTab === "Saved Articles") {
+    $("#articleTab").toggleClass("active")
+    $("#savedTab").toggleClass("active")
+    $("#articles").toggleClass("active").toggleClass("show")
+    $("#saved").toggleClass("active").toggleClass("show")
+  }
+  else if ($("#savedTab").hasClass("active") && savedTab === "Articles") {
+    $("#articleTab").toggleClass("active")
+    $("#savedTab").toggleClass("active")
+    $("#articles").toggleClass("active").toggleClass("show")
+    $("#saved").toggleClass("active").toggleClass("show")
+  }
+}
 
 // Call =====================================================================
 
@@ -100,4 +126,8 @@ $("document").ready(() => {
   $(".trashBtn").on("click", deleteSaved)
   // When link button is clicked
   $(".savedLinkBtn").on("click", changeSeen)
+  // Get tab
+  $(".nav-item").on("click", getTab)
+  // Set Tab
+  setTab();
 })

@@ -159,7 +159,7 @@ module.exports = db => {
         console.log(err);
       }
       // Else set saved data
-      console.log("saved data: ", data)
+      // console.log("saved data: ", data)
       savedData = data
     })
     // Render page
