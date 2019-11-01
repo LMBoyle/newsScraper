@@ -78,6 +78,12 @@ a {
   color: blue;
 }
 
+.noteSaveBtn {
+  background-color: #567b95;
+  color: black;
+  border-radius: 0%
+}
+
 /* ============ Loading Card ============ */
 
 .loadingCard {

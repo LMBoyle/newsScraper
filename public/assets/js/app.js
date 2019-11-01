@@ -123,8 +123,8 @@ $("document").ready(() => {
   loadNews();
   // When save button is clicked
   $(".saveBtn").on("click", saveArticle)
-  // When note button is clicked
-  $(".noteBtn").on("click", postNewNote)
+  // When note save button is clicked
+  $(".noteSaveBtn").on("click", postNewNote)
   // When trash button is clicked
   $(".trashBtn").on("click", deleteSaved)
   // When link button is clicked

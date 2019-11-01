@@ -25,7 +25,7 @@
 
           {{#each saved}}
             <div class="card">
-              <div class="card-header articleTitle" data-toggle="collapse" data-target="#collapse{{_id}}"> {{title}}
+              <div class="card-header articleTitle"> {{title}}
                 {{!-- Buttons --}}
                 <div class="float-right">
                   {{!-- Link Button --}}
@@ -37,7 +37,7 @@
                     <i class="fas fa-trash-alt fa-2x"></i>
                   </button>
                   {{!-- Note Button --}}
-                  <button type="button" class="noteBtn btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  <button type="button" class="noteBtn btn" data-toggle="collapse" data-target="#collapse{{_id}}" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fas fa-sticky-note fa-2x"></i>
                   </button>
                   {{!-- If Read --}}
@@ -53,9 +53,18 @@
             </div>
 
             <div class="collapse" id="collapse{{_id}}">
-              <div class="card card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-              </div>
+              <form>
+                <div class="form-group text-center">
+                  <label for="articleNotes"> Write a New Note </label>
+                  <textarea class="form-control" id="articleNote" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-block noteSaveBtn"> Save </button>
+              </form>
+              {{#each savedNote}}
+                <div class="card card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                </div>
+              {{/each}}
             </div>
         </div>
       {{/each}}
