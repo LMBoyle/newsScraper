@@ -12,49 +12,53 @@
 
       {{!-- Card for saved articles --}}
       <div class="card-body" id="savedArticles">
-        <ul class="list-group list-group-flush">
+        <div class="accordion">
           {{#unless saved}}
-            <li class="list-group-item nothingSaved">
-              You haven't saved any articles
-            </li>
+            <div class="card">
+              <div class="card-header">
+                <li class="list-group-item nothingSaved">
+                  You haven't saved any articles
+                </li>
+              </div>
+            </div>
           {{/unless}}
 
           {{#each saved}}
-            <li class="list-group-item articleTitle"> {{title}}
-              {{!-- Buttons --}}
-              <div class="float-right">
-                {{!-- Link Button --}}
-                <a class="savedLinkBtn btn" href="{{link}}" target="_blank" data-id="{{_id}}">
-                  <i class="fas fa-link fa-2x"></i>
-                </a>
-                {{!-- Trash/Un-save Button --}}
-                <button type="button" class="trashBtn btn" data-id="{{_id}}">
-                  <i class="fas fa-trash-alt fa-2x"></i>
-                </button>
-                {{!-- Note Button --}}
-                <button type="button" class="noteBtn btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                  <i class="fas fa-sticky-note fa-2x"></i>
-                </button>
-                {{!-- If Read --}}
-                <button type="button" class="seenBtn btn">
-                  {{#if isRead}}
-                    <i class="fas fa-eye fa-2x"></i>
-                  {{/if}}
-                  {{#unless isRead}}
-                    <i class="fas fa-eye-slash fa-2x"></i>
-                  {{/unless}}
-                </button>
-              </div>
-            </li>
-          {{/each}}
-        </ul>
+            <div class="card">
+              <div class="card-header articleTitle" data-toggle="collapse" data-target="#collapse{{_id}}"> {{title}}
+                {{!-- Buttons --}}
+                <div class="float-right">
+                  {{!-- Link Button --}}
+                  <a class="savedLinkBtn btn" href="{{link}}" target="_blank" data-id="{{_id}}">
+                    <i class="fas fa-link fa-2x"></i>
+                  </a>
+                  {{!-- Trash/Un-save Button --}}
+                  <button type="button" class="trashBtn btn" data-id="{{_id}}">
+                    <i class="fas fa-trash-alt fa-2x"></i>
+                  </button>
+                  {{!-- Note Button --}}
+                  <button type="button" class="noteBtn btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="fas fa-sticky-note fa-2x"></i>
+                  </button>
+                  {{!-- If Read --}}
+                  <button type="button" class="seenBtn btn">
+                    {{#if isRead}}
+                      <i class="fas fa-eye fa-2x"></i>
+                    {{/if}}
+                    {{#unless isRead}}
+                      <i class="fas fa-eye-slash fa-2x"></i>
+                    {{/unless}}
+                  </button>
+                </div>
+            </div>
 
-        <div class="collapse" id="collapseExample">
-          <div class="card card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-          </div>
+            <div class="collapse" id="collapse{{_id}}">
+              <div class="card card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+              </div>
+            </div>
         </div>
-      </div>
+      {{/each}}
 
     </div>
   </div>
