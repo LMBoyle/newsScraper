@@ -53,7 +53,8 @@ saveArticle = function() {
       link: saveLink
     }
   })
-  .then(data => console.log(data))
+  .then(data => console.log("Saved: ", data));
+  location.reload()
 }
 
 // Save a note
@@ -70,7 +71,8 @@ deleteSaved = function() {
     method: "POST",
     url: "/api/articles/saved/delete/" + thisId,
   })
-  .then(data => console.log("deleted: ", data))
+  .then(data => console.log("Deleted: ", data));
+  location.reload()
 }
 
 // Change eye icon
@@ -85,7 +87,8 @@ changeSeen = function() {
       isRead: true
     }
   })
-  .then(data => console.log(data))
+  .then(data => console.log("Looked At: ", data));
+  location.reload()
 }
 
 // Get Tab

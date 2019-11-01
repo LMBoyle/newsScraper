@@ -21,9 +21,8 @@ module.exports = db => {
       .catch(err => res.json(err))
     },
     saveArticle: (req, res) => {
-      console.log(req.body)
       db.Saved.create(req.body)
-      .then(dbSaved => console.log("Saved articles: ", dbSaved))
+      .then(dbSaved => res.json(dbSaved))
       .catch(err => console.log(err));
     },
     getSavedId: (req, res) => {
