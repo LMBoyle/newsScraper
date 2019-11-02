@@ -3,11 +3,14 @@
 var express = require("express");
 var exphbs = require("express-handlebars");
 var mongoose = require("mongoose");
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsScraper";
+
 
 // Database =================================================================
 
 var db = require("./models");
-mongoose.connect("mongodb://localhost/newsScraper", { useNewUrlParser: true });
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Express ==================================================================
 
