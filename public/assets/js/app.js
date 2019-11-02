@@ -3,7 +3,8 @@
 const
   baseURL = window.location.origin,
   newsURL = "/news",
-  loadURL = "/news/loading";
+  loadURL = "/news/loading"
+  colors = ["blue", "green", "brown", "grey"];
 
 let
   timeout,
@@ -13,7 +14,9 @@ let
   selectedTab,
   savedTab,
   noteText,
-  noteDiv;
+  noteDiv,
+  num,
+  eyeIcon;
 
 // Functions ================================================================
 
@@ -127,6 +130,15 @@ changeSeen = function() {
   location.reload()
 }
 
+// Change eye color
+changeColor = function() {
+  thisId = $(this).attr("data-id")
+
+  num = Math.floor(Math.random() * Math.floor(colors.length));
+  eyeIcon = $(".eyeBtn[data-id='" + thisId + "']")
+  eyeIcon.css("color", colors[num])
+}
+
 // Get Tab
 getTab = function() {
   selectedTab = $(this)[0].text.trim()
@@ -167,8 +179,10 @@ $("document").ready(() => {
   $(".trashBtn").on("click", deleteSaved)
   // When link button is clicked
   $(".savedLinkBtn").on("click", changeSeen)
+  // Change eye color
+  $(".eyeBtn").on("click", changeColor)
   // Get tab
-  $(".nav-item").on("click", getTab)
+  $(".nav-item").on("click", getTab);
   // Set Tab
   setTab();
 })

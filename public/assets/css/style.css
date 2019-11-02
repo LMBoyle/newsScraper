@@ -93,6 +93,11 @@ a {
   margin: 5px 0;
 }
 
+.nothingSavedHead {
+  background-color: #fff;
+  border: 0;
+}
+
 /* ============ Loading Card ============ */
 
 .loadingCard {

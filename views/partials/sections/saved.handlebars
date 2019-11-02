@@ -15,7 +15,7 @@
         <div class="accordion">
           {{#unless saved}}
             <div>
-              <div class="card-header">
+              <div class="card-header nothingSavedHead">
                 <li class="list-group-item nothingSaved">
                   You haven't saved any articles
                 </li>
@@ -43,10 +43,10 @@
                   {{!-- If Read --}}
                   <button type="button" class="seenBtn btn">
                     {{#if isRead}}
-                      <i class="fas fa-eye fa-2x"></i>
+                      <i class="fas fa-eye fa-2x eyeBtn" data-id="{{_id}}"></i>
                     {{/if}}
                     {{#unless isRead}}
-                      <i class="fas fa-eye-slash fa-2x"></i>
+                      <i class="fas fa-eye-slash fa-2x eyeBtn" data-id="{{_id}}"></i>
                     {{/unless}}
                   </button>
                 </div>
