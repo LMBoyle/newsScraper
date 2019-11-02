@@ -62,7 +62,7 @@ saveArticle = function() {
 // Save a note
 postNewNote = function() {
   thisId = $(this).attr("data-id")
-  noteText = $("#articleNote").val()
+  noteText = $("#articleNote[data-id='" + thisId + "']").val()
 
   $.ajax({
     method: "POST",
@@ -92,6 +92,7 @@ getNotes = function() {
         noteDiv.append("<p>" + "No note(s) yet" + "<p>")
       }
       else {
+        console.log(data.note.body)
         noteDiv.append("<p>" + data.note.body + "</p>")
       }
     });
