@@ -37,7 +37,7 @@
                     <i class="fas fa-trash-alt fa-2x"></i>
                   </button>
                   {{!-- Note Button --}}
-                  <button type="button" class="noteBtn btn" data-toggle="collapse" data-target="#collapse{{_id}}" aria-expanded="false" aria-controls="collapseExample">
+                  <button type="button" class="noteBtn btn" data-toggle="collapse" data-target="#collapse{{_id}}" aria-expanded="false" aria-controls="collapseNote">
                     <i class="fas fa-sticky-note fa-2x"></i>
                   </button>
                   {{!-- If Read --}}
@@ -58,11 +58,11 @@
                   <label for="articleNotes"> Write a New Note </label>
                   <textarea class="form-control" id="articleNote" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-block noteSaveBtn"> Save </button>
+                <button type="submit" class="btn btn-block noteSaveBtn" data-id="{{_id}}"> Save </button>
               </form>
-              {{#each savedNote}}
+              {{#each saved.note}}
                 <div class="card card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                  {{note.body}}
                 </div>
               {{/each}}
             </div>

@@ -152,15 +152,13 @@ module.exports = db => {
       articleData = data
     })
     // Find saved
-    db.Saved.find({}, (err, data) => {
+    db.Saved.find({})
+    .populate("note")
+    .then(data => {
       console.log("finding saved")
-      // If error
-      if (err) {
-        console.log(err);
-      }
-      // Else set saved data
-      // console.log("saved data: ", data)
-      savedData = data
+      // Set saved data
+      console.log("saved data: ", data.note)
+      return savedData = data
     })
     // Render page
     .then(() => {
@@ -172,6 +170,7 @@ module.exports = db => {
         saved: savedData
       })
     })
+    .catch(err => console.log(err))
   });
 
   router.get("*", (req, res) => res.redirect("/news/loading"))

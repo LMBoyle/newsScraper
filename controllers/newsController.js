@@ -23,7 +23,7 @@ module.exports = db => {
     saveArticle: (req, res) => {
       db.Saved.create(req.body)
       .then(dbSaved => res.json(dbSaved))
-      .catch(err => console.log(err));
+      .catch(err => res.json(err));
     },
     getSavedId: (req, res) => {
       db.Saved.findOne({
@@ -62,7 +62,7 @@ module.exports = db => {
           new: true 
         });
       })
-      .then(dbSaved => res.json(dbSaved))
+      .then(dbSaved => console.log(dbSaved))
       .catch(err => res.json(err));
     },
   }

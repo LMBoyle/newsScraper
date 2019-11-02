@@ -12,17 +12,17 @@ module.exports = function(db) {
   // Get specific article
   router.get("/articles/:id", appController.getNewsId)
   // Get saved articles
-  router.get("/articles/saved", appController.showSaved)
+  router.get("/saved", appController.showSaved)
   // Add article to saved db
-  router.post("/articles/saved", appController.saveArticle)
+  router.post("/saved", appController.saveArticle)
   // Get specific saved article
-  router.get("/articles/saved/:id", appController.getSavedId)
+  router.get("/saved/:id", appController.getSavedId)
   // Update specific saved article
-  router.post("/articles/saved/:id", appController.updateSaved)
+  router.post("/saved/:id", appController.updateSaved)
   // Delete specific saved article
-  router.post("/articles/saved/delete/:id", appController.deleteSaved)
+  router.post("/saved/delete/:id", appController.deleteSaved)
   // Add to specific saved article
-  router.post("/articles/saved/note/:id", appController.postNote)
+  router.post("/saved/note/:id", appController.postNote)
 
   return router;
 }

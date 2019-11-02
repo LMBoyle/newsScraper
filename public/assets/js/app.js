@@ -11,7 +11,8 @@ let
   saveLink,
   thisId,
   selectedTab,
-  savedTab;
+  savedTab,
+  noteText;
 
 // Functions ================================================================
 
@@ -47,7 +48,7 @@ saveArticle = function() {
 
   $.ajax({
     method: "POST",
-    url: "/api/articles/saved",
+    url: "/api/saved",
     data: {
       title: saveTitle,
       link: saveLink
@@ -58,8 +59,19 @@ saveArticle = function() {
 }
 
 // Save a note
-postNewNote = () => {
+postNewNote = function() {
+  thisId = $(this).attr("data-id")
+  noteText = $("#articleNote").val()
 
+  $.ajax({
+    method: "POST",
+    url: "/api/saved/note/" + thisId,
+    data: {
+      body: noteText
+    }
+  })
+  .then(data => console.log("Saved Note: ", data));
+  // location.reload()
 }
 
 // Delete a saved article
@@ -69,7 +81,7 @@ deleteSaved = function() {
 
   $.ajax({
     method: "POST",
-    url: "/api/articles/saved/delete/" + thisId,
+    url: "/api/saved/delete/" + thisId,
   })
   .then(data => console.log("Deleted: ", data));
   location.reload()
@@ -82,7 +94,7 @@ changeSeen = function() {
 
   $.ajax({
     method: "POST",
-    url: "/api/articles/saved/" + thisId,
+    url: "/api/saved/" + thisId,
     data: {
       isRead: true
     }
