@@ -73,19 +73,19 @@ postNewNote = function(e) {
 
   if (noteText === "" || noteText === null || noteText === undefined) {
     $("#validText[data-id='" + thisId + "']").css("display", "block");
-    e.preventDefault();
     return false;
   }
-
-  $.ajax({
-    method: "POST",
-    url: "/api/saved/note/" + thisId,
-    data: {
-      body: noteText
-    }
-  })
-  .then(data => console.log("Saved Note: ", data));
-  location.reload()
+  else {
+    $.ajax({
+      method: "POST",
+      url: "/api/saved/note/" + thisId,
+      data: {
+        body: noteText
+      }
+    })
+    .then(data => console.log("Saved Note: ", data));
+    location.reload()
+  }
 }
 
 // Get Notes

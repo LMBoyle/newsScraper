@@ -31,7 +31,6 @@ How to use mongoose and cheerio to scrape a website and display the data
 - [ ] See articles from other sites
 - [ ] Allow more than one note
 
-
 ## Links
 [Deployed Link](https://newsscraper-lmb.herokuapp.com/)
 

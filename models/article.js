@@ -12,8 +12,7 @@ var ArticleSchema = new Schema({
     required: true
   },
   snip: {
-    type: String,
-    default: "No Snippet"
+    type: String
   }
 });
 
