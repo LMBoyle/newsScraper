@@ -157,7 +157,7 @@ module.exports = db => {
     .then(data => {
       console.log("finding saved")
       // Set saved data
-      console.log("saved data: ", data.note)
+      // console.log("saved data: ", data)
       return savedData = data
     })
     // Render page

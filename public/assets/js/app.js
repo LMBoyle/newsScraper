@@ -12,7 +12,8 @@ let
   thisId,
   selectedTab,
   savedTab,
-  noteText;
+  noteText,
+  noteDiv;
 
 // Functions ================================================================
 
@@ -72,6 +73,28 @@ postNewNote = function() {
   })
   .then(data => console.log("Saved Note: ", data));
   // location.reload()
+}
+
+// Get Notes
+getNotes = function() {
+  thisId = $(this).attr("data-id")
+
+  $.ajax({
+    method: "GET",
+    url: "/api/saved/" + thisId
+  })
+    // With that done, add the note information to the page
+    .then(function(data) {
+      noteDiv = $(".noteText[data-id='" + thisId + "']")
+      // noteDiv.empty()
+
+      if (data.note === undefined || data.note === null || data.note === ""){
+        noteDiv.append("<p>" + "No note(s) yet" + "<p>")
+      }
+      else {
+        noteDiv.append("<p>" + data.note.body + "</p>")
+      }
+    });
 }
 
 // Delete a saved article
@@ -137,6 +160,8 @@ $("document").ready(() => {
   $(".saveBtn").on("click", saveArticle)
   // When note save button is clicked
   $(".noteSaveBtn").on("click", postNewNote)
+  // When note button is clicked
+  $(".noteBtn").on("click", getNotes)
   // When trash button is clicked
   $(".trashBtn").on("click", deleteSaved)
   // When link button is clicked

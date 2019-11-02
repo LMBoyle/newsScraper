@@ -84,6 +84,15 @@ a {
   border-radius: 0%
 }
 
+.savedArticleTitle {
+  background-color: #fff;
+  line-height: 48px;
+}
+
+.noteText {
+  margin: 5px 0;
+}
+
 /* ============ Loading Card ============ */
 
 .loadingCard {

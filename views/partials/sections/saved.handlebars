@@ -14,7 +14,7 @@
       <div class="card-body" id="savedArticles">
         <div class="accordion">
           {{#unless saved}}
-            <div class="card">
+            <div>
               <div class="card-header">
                 <li class="list-group-item nothingSaved">
                   You haven't saved any articles
@@ -24,8 +24,8 @@
           {{/unless}}
 
           {{#each saved}}
-            <div class="card">
-              <div class="card-header articleTitle"> {{title}}
+            <div>
+              <div class="card-header savedArticleTitle"> {{title}}
                 {{!-- Buttons --}}
                 <div class="float-right">
                   {{!-- Link Button --}}
@@ -37,7 +37,7 @@
                     <i class="fas fa-trash-alt fa-2x"></i>
                   </button>
                   {{!-- Note Button --}}
-                  <button type="button" class="noteBtn btn" data-toggle="collapse" data-target="#collapse{{_id}}" aria-expanded="false" aria-controls="collapseNote">
+                  <button type="button" class="noteBtn btn" data-toggle="collapse" data-target="#collapse{{_id}}" aria-expanded="false" aria-controls="collapseNote" data-id="{{_id}}">
                     <i class="fas fa-sticky-note fa-2x"></i>
                   </button>
                   {{!-- If Read --}}
@@ -60,11 +60,8 @@
                 </div>
                 <button type="submit" class="btn btn-block noteSaveBtn" data-id="{{_id}}"> Save </button>
               </form>
-              {{#each saved.note}}
-                <div class="card card-body">
-                  {{note.body}}
-                </div>
-              {{/each}}
+              <div class="card card-body noteText" data-id="{{_id}}">
+              </div>
             </div>
         </div>
       {{/each}}
