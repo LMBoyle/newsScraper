@@ -10,6 +10,10 @@ var ArticleSchema = new Schema({
   link: {
     type: String,
     required: true
+  },
+  snip: {
+    type: String,
+    default: "No Snippet"
   }
 });
 

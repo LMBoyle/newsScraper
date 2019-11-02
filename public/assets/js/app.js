@@ -4,7 +4,7 @@ const
   baseURL = window.location.origin,
   newsURL = "/news",
   loadURL = "/news/loading"
-  colors = ["blue", "green", "brown", "grey"];
+  colors = ["#2e536f", "#3d671d", "#634e34", "#778899", "#528C9E", "#0F305B", "##b5ae6e"];
 
 let
   timeout,
@@ -25,7 +25,10 @@ loadNews = () => {
   // If on the loading page
   if (window.location.pathname === "/news/loading") {
     console.log("Reloading")
+    sessionStorage.clear();
+    sessionStorage.setItem("tab", "Articles")
 
+    return
     // Wait then...
     timeout = setTimeout(() => {
       console.log("Boo!");
@@ -49,13 +52,15 @@ scrapeNewsBtn = () => {
 saveArticle = function() {
   saveTitle = $(this).attr("data-title")
   saveLink = $(this).attr("data-link")
+  saveSnip = $(this).attr("data-snip")
 
   $.ajax({
     method: "POST",
     url: "/api/saved",
     data: {
       title: saveTitle,
-      link: saveLink
+      link: saveLink,
+      snip: saveSnip
     }
   })
   .then(data => console.log("Saved: ", data));
@@ -180,7 +185,7 @@ $("document").ready(() => {
   // When link button is clicked
   $(".savedLinkBtn").on("click", changeSeen)
   // Change eye color
-  $(".eyeBtn").on("click", changeColor)
+  $(".seenBtn").on("click", changeColor)
   // Get tab
   $(".nav-item").on("click", getTab);
   // Set Tab

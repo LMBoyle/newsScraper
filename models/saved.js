@@ -11,6 +11,9 @@ var SavedSchema = new Schema({
     type: String,
     required: true
   },
+  snip: {
+    type: String
+  },
   isRead: {
     type: Boolean,
     default: false

@@ -25,9 +25,17 @@
 
           {{#each saved}}
             <div>
-              <div class="card-header savedArticleTitle"> {{title}}
+              <div class="card-header savedArticleTitle row"> 
+                <span class="col-9">
+                  {{title}}
+  
+                  {{#if snip}} 
+                    <br/>
+                    <small class="text-muted">{{snip}}</small> 
+                  {{/if}}
+                </span>
                 {{!-- Buttons --}}
-                <div class="float-right">
+                <span class="col text-right">
                   {{!-- Link Button --}}
                   <a class="savedLinkBtn btn" href="{{link}}" target="_blank" data-id="{{_id}}">
                     <i class="fas fa-link fa-2x"></i>
@@ -41,15 +49,15 @@
                     <i class="fas fa-sticky-note fa-2x"></i>
                   </button>
                   {{!-- If Read --}}
-                  <button type="button" class="seenBtn btn">
+                  <button type="button" class="seenBtn btn" data-id="{{_id}}">
                     {{#if isRead}}
-                      <i class="fas fa-eye fa-2x eyeBtn" data-id="{{_id}}"></i>
+                      <i class="fas fa-eye fa-2x" data-id="{{_id}}"></i>
                     {{/if}}
                     {{#unless isRead}}
-                      <i class="fas fa-eye-slash fa-2x eyeBtn" data-id="{{_id}}"></i>
+                      <i class="fas fa-eye-slash fa-2x" data-id="{{_id}}"></i>
                     {{/unless}}
                   </button>
-                </div>
+                </span>
             </div>
 
             <div class="collapse" id="collapse{{_id}}">

@@ -24,14 +24,24 @@
 
         <ul class="list-group list-group-flush">
           {{#each articles}}
-            <li class="list-group-item articleTitle" data-id="{{_id}}"> {{title}}
-              <div class="float-right">
-                <a class="linkBtn btn" href="{{link}}" target="_blank">
-                  <i class="fas fa-link fa-2x"></i>
-                </a>
-                <button type="button" class="saveBtn btn" data-title="{{title}}" data-link="{{link}}">
-                  <i class="fas fa-save fa-2x"></i>
-                </button>
+            <li class="list-group-item articleTitle" data-id="{{_id}}"> 
+              <div class="row">
+                <div class="col-9">
+                  {{title}}
+                    
+                  {{#if snip}} 
+                    <br/>
+                    <small class="text-muted">{{snip}}</small> 
+                  {{/if}}
+                </div>
+                <div class="col text-right">
+                  <a class="linkBtn btn" href="{{link}}" target="_blank">
+                    <i class="fas fa-link fa-2x"></i>
+                  </a>
+                  <button type="button" class="saveBtn btn" data-title="{{title}}" data-link="{{link}}" data-snip="{{snip}}">
+                    <i class="fas fa-save fa-2x"></i>
+                  </button>
+                </div>
               </div>
             </li>
           {{/each}}

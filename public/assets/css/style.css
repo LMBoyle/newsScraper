@@ -2,6 +2,7 @@
 
 body, html {
   font-family: 'Noticia Text', serif;
+  background: url("../../assets/img/paper_3.png");
 }
 
 /* ===============  Title =============== */
@@ -27,12 +28,15 @@ body, html {
 
 a.nav-link.active {
   color: #567b95 !important;
+  background-color: #ebebeb !important;
+  border-bottom: 1px solid rgb(202, 202, 202) !important
 }
 
 a.nav-link {
-  color: black;
+  color: grey;
   font-size: 1.5rem;
   font-weight: bold;
+  background-color: #f0f0f0;
 }
 
 /* ============== Articles ============== */
@@ -62,6 +66,12 @@ li {
 
 a {
   background-color: transparent;
+}
+
+.scrapeBtn {
+  border-radius: 0;
+  color: black;
+  border: 1px solid #567b95
 }
 
 /* =============== Saved  =============== */
@@ -96,6 +106,10 @@ a {
 .nothingSavedHead {
   background-color: #fff;
   border: 0;
+}
+
+.col {
+  padding: 0;
 }
 
 /* ============ Loading Card ============ */

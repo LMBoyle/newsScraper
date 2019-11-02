@@ -112,7 +112,8 @@ module.exports = db => {
           result.link = "https://www.nytimes.com" + $(element).parent().parent().parent().find("a").attr("href")
           // Find the title
           result.title = $(element).find("span").attr("class", "esl82me0").text() || $(element).find("h2").attr("class", "esl82me0").text();
-
+          // Find snippet
+          result.snip = $(element).siblings(".e1n8kpyg0").text()
           // For each article, put it in the database
           db.Article.create(
             result
