@@ -66,8 +66,10 @@
                   <label for="articleNotes"> Write a New Note </label>
                   <textarea class="form-control" id="articleNote" rows="3" data-id="{{_id}}"></textarea>
                 </div>
+                <div id="validText" class="text-center" data-id="{{_id}}"> Please Enter Some Text! </div>
                 <button type="submit" class="btn btn-block noteSaveBtn" data-id="{{_id}}"> Save </button>
               </form>
+              
               <div class="card card-body noteText" data-id="{{_id}}">
               </div>
             </div>

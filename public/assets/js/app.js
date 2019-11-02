@@ -28,7 +28,6 @@ loadNews = () => {
     sessionStorage.clear();
     sessionStorage.setItem("tab", "Articles")
 
-    return
     // Wait then...
     timeout = setTimeout(() => {
       console.log("Boo!");
@@ -68,9 +67,15 @@ saveArticle = function() {
 }
 
 // Save a note
-postNewNote = function() {
+postNewNote = function(e) {
   thisId = $(this).attr("data-id")
-  noteText = $("#articleNote[data-id='" + thisId + "']").val()
+  noteText = $("#articleNote[data-id='" + thisId + "']").val().trim();
+
+  if (noteText === "" || noteText === null || noteText === undefined) {
+    $("#validText[data-id='" + thisId + "']").css("display", "block");
+    e.preventDefault();
+    return false;
+  }
 
   $.ajax({
     method: "POST",
@@ -80,7 +85,7 @@ postNewNote = function() {
     }
   })
   .then(data => console.log("Saved Note: ", data));
-  // location.reload()
+  location.reload()
 }
 
 // Get Notes
@@ -140,7 +145,7 @@ changeColor = function() {
   thisId = $(this).attr("data-id")
 
   num = Math.floor(Math.random() * Math.floor(colors.length));
-  eyeIcon = $(".eyeBtn[data-id='" + thisId + "']")
+  eyeIcon = $(".seenBtn[data-id='" + thisId + "']")
   eyeIcon.css("color", colors[num])
 }
 

@@ -112,6 +112,12 @@ a {
   padding: 0;
 }
 
+#validText {
+  color: red;
+  margin-bottom: 15px;
+  display: none;
+}
+
 /* ============ Loading Card ============ */
 
 .loadingCard {
