@@ -1,7 +1,9 @@
-# News Scraper
-Get all your important news in one place!
+# [News Scraper](https://newsscraper-lmb.herokuapp.com/)
+
+Full-Stack Application to get all your important news in one place
 
 ## Instructions
+
 Go to '/news/loading' and after the news is scraped, view all the articles of the day from The New York Times. Save articles to come back to, add a note or go to the article link.
 
 ## Languages/Technologies 
@@ -19,10 +21,8 @@ Go to '/news/loading' and after the news is scraped, view all the articles of th
 * Axios
 * Mongoose
 
-## What It Teaches
-How to use mongoose and cheerio to scrape a website and display the data
-
 ## Demo
+
 ![Demo Gif](public/assets/img/newsScrapeDemo.gif)
 
 ## Future Development/Improvements
@@ -31,7 +31,4 @@ How to use mongoose and cheerio to scrape a website and display the data
 - [ ] See articles from other sites
 - [ ] Allow more than one note
 
-## Links
-[Deployed Link](https://newsscraper-lmb.herokuapp.com/)
-
-[Portfolio](https://lmboyle.github.io/)
+&copy; 2019 [Luke Boyle](https://lmboyle.github.io/)
